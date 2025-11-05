@@ -6,32 +6,69 @@
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:10:24 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/05 15:03:51 by ldepenne         ###   ########.fr       */
+/*   Updated: 2025/11/05 17:33:39 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdarg.h>
 #include "printf.h"
+
+static int	count_word(const char *s)
+{
+	int	len;
+
+	return (len);
+}
+
+static void	ft_if(const char *s, char *arg)
+{
+	if ()
+}
 
 int	ft_printf(const char *s, ...)
 {
-	int	i;
-	int	len;
+	va_list	list;
+	char	*arg;
+	int		len;
+	int		i;
 
 	if (!s)
 		return (0);
+	len = count_word(s);
+	va_start(list, s);
+	arg = (char *) va_arg(list, char *);
 	i = 0;
-	len = 0;
 	while (s[i] != '%' && s[i])
 	{
 		write(1, &s[i], 1);
 		i++;
 	}
-	if (s[i] == '%' && s[i + 1] == '%')
-		len = print_percent(s);
-	if(s[i] == '%' && s[i + 1] == 's')
-		len = print_str(s);
-	len += i;
+	if (s[i] == '%' && s[i + 1] != NULL)
+		ft_if(s, arg);
+
 	return (len);
 }
+
+// int	ft_printf(const char *s, ...)
+// {
+// 	int	i;
+// 	int	len;
+
+// 	if (!s)
+// 		return (0);
+// 	i = 0;
+// 	len = 0;
+// 	while (s[i] != '%' && s[i])
+// 	{
+// 		write(1, &s[i], 1);
+// 		i++;
+// 	}
+// 	if (s[i] == '%' && s[i + 1] == '%')
+// 		len = print_percent(s);
+// 	if(s[i] == '%' && s[i + 1] == 's')
+// 		len = print_str(s);
+// 	len += i;
+// 	return (len);
+// }

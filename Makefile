@@ -1,3 +1,5 @@
+#
+
 CC= cc
 CFLAGS= -Wall -Wextra -Werror
 HEADER=printf.h
@@ -18,10 +20,10 @@ $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
 $(BUILD_DIR)%.o: %.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER)
 
 $(OBJ_DIR):
-	mkdir -p $@
+	@mkdir -p $@
 
 clean:
 	rm -rf $(BUILD_DIR)
