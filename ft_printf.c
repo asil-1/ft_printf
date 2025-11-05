@@ -6,7 +6,7 @@
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:10:24 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/04 17:50:59 by ldepenne         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:03:51 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,9 @@ int	ft_printf(const char *s, ...)
 		i++;
 	}
 	if (s[i] == '%' && s[i + 1] == '%')
-	{
 		len = print_percent(s);
-	}
-	if(s[i] == '%' && s[i + 1] == 'c')
-	{
-		len = print_percent(s);
-	}
+	if(s[i] == '%' && s[i + 1] == 's')
+		len = print_str(s);
 	len += i;
 	return (len);
 }

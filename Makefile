@@ -4,28 +4,31 @@ HEADER=printf.h
 
 NAME=libftprintf.a
 
-SRC= ft_printf.c \
-	print_percent.c
+BUILD_DIR=obj/
 
-OBJ= $(addprefix obj/, $(SRC: .c=.o))
+SRC= ft_printf.c \
+	print_fonction.c
+
+OBJ= $(SRC:%.c=$(BUILD_DIR)%.o)
+OBJ_DIR= $(sort $(shell dirname $(OBJ)))
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 
-obj/%.o: %.c
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER)
+$(BUILD_DIR)%.o: %.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER)
+
+$(OBJ_DIR):
+	mkdir -p $@
 
 clean:
-	rm -rf $(OBJ)
+	rm -rf $(BUILD_DIR)
 
-flcean: clean
+fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
 
 .PHONY : all clean fclean re
-
-

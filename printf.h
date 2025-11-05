@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/04 17:49:01 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/04 17:49:39 by ldepenne         ###   ########.fr       */
+/*   Created: 2025/11/04 17:38:24 by ldepenne          #+#    #+#             */
+/*   Updated: 2025/11/05 14:47:29 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prinf.h"
+#ifndef PRINTF_H
+# define PRINTF_H
+# include <unistd.h>
 
-int	print_percent(const char *s)
-{
-	int	i;
-	int	len;
+int	ft_printf(const char *s, ...);
+int	print_percent(const char *s);
+int	print_str(const char *s);
 
-	i = 0;
-	len = 0;
-	while (s[i] == '%' && s[i + 1] == '%')
-	{
-		len += write(1, "%", 1);
-		i += 2;
-	}
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-	return (len);
-}
+#endif
