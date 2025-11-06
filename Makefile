@@ -9,7 +9,7 @@ NAME=libftprintf.a
 BUILD_DIR=obj/
 
 SRC= ft_printf.c \
-	print_fonction.c
+	print_function.c
 
 OBJ= $(SRC:%.c=$(BUILD_DIR)%.o)
 OBJ_DIR= $(sort $(shell dirname $(OBJ)))

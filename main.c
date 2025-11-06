@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/04 17:38:24 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/06 19:32:45 by ldepenne         ###   ########.fr       */
+/*   Created: 2025/11/02 15:57:35 by ldepenne          #+#    #+#             */
+/*   Updated: 2025/11/06 19:28:05 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
-# include <unistd.h>
-# include <stdarg.h>
 
+#include <stdio.h>
+#include "printf.h"
 
-int	ft_printf(const char *s, ...);
-int	ft_putstr(char *s);
-int	ft_putchar(char c);
-int	ft_putnb_base(int n, char *base);
-int	ft_putnb_unsigned_base(unsigned int n, char *base);
-int	ft_printptr(char c, va_list list);
+int	main(void)
+{
+	// char	*s = NULL;
 
-#endif
+	// s = "test";
+	// ft_printf("%d\n", ft_printf("%s\n", s));
+	// ft_printf("%p\n", s);
+	printf("%d\n", printf("%p", NULL));
+}
+
+// printf("%d\n", printf("%s\n", "test"));

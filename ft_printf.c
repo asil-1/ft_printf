@@ -6,69 +6,62 @@
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:10:24 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/05 17:33:39 by ldepenne         ###   ########.fr       */
+/*   Updated: 2025/11/06 19:36:54 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdarg.h>
 #include "printf.h"
 
-static int	count_word(const char *s)
+static int	check_character(const char c, va_list list)
 {
-	int	len;
+	int		len;
+	char	*base;
 
+	if (c == '%')
+		len = write(1, "%", 1);
+	if (c == 's')
+		len = ft_putstr(va_arg(list, char *));
+	if (c == 'c')
+		len = ft_putchar(va_arg(list, int));
+	if (c == 'i' || c == 'd')
+		len = ft_putnb_base(va_arg(list, int), "0123456789");
+	if (c == 'u')
+		len = ft_putnb_base(va_arg(list, unsigned int), "0123456789");
+	if (c == 'p')
+		len = ft_printptr(c, list);
+	if (c == 'x' || c == 'X')
+	{
+		base = "0123456789abcdef";
+		if (c == 'X')
+			base = "0123456789ABCDEF";
+		len += ft_putnb_base(va_arg(list, int), base);
+	}
 	return (len);
-}
-
-static void	ft_if(const char *s, char *arg)
-{
-	if ()
 }
 
 int	ft_printf(const char *s, ...)
 {
 	va_list	list;
-	char	*arg;
 	int		len;
 	int		i;
 
 	if (!s)
-		return (0);
-	len = count_word(s);
-	va_start(list, s);
-	arg = (char *) va_arg(list, char *);
+		return (-1);
+	len = 0;
+	va_start (list, s);
 	i = 0;
-	while (s[i] != '%' && s[i])
+	while (s[i])
 	{
-		write(1, &s[i], 1);
+		if (s[i] == '%' && s[i + 1] != '\0')
+		{
+			len += check_character(*(s + i + 1), list);
+			i += 2;
+		}
+		len += write(1, &s[i], 1);
 		i++;
 	}
-	if (s[i] == '%' && s[i + 1] != NULL)
-		ft_if(s, arg);
-
+	va_end (list);
 	return (len);
 }
-
-// int	ft_printf(const char *s, ...)
-// {
-// 	int	i;
-// 	int	len;
-
-// 	if (!s)
-// 		return (0);
-// 	i = 0;
-// 	len = 0;
-// 	while (s[i] != '%' && s[i])
-// 	{
-// 		write(1, &s[i], 1);
-// 		i++;
-// 	}
-// 	if (s[i] == '%' && s[i + 1] == '%')
-// 		len = print_percent(s);
-// 	if(s[i] == '%' && s[i + 1] == 's')
-// 		len = print_str(s);
-// 	len += i;
-// 	return (len);
-// }
