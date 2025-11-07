@@ -6,22 +6,20 @@
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 15:57:35 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/06 19:28:05 by ldepenne         ###   ########.fr       */
+/*   Updated: 2025/11/07 10:24:29 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <stdio.h>
-#include "printf.h"
+#include "ft_printf.h"
 
 int	main(void)
 {
-	// char	*s = NULL;
+	char	*s;
 
-	// s = "test";
-	// ft_printf("%d\n", ft_printf("%s\n", s));
-	// ft_printf("%p\n", s);
-	printf("%d\n", printf("%p", NULL));
+	s = "la riviere";
+	ft_printf("%d\n", ft_printf("%x\n", 1562));
+	// printf("%d\n", printf("%x\n", 1562));
 }
 
 // printf("%d\n", printf("%s\n", "test"));

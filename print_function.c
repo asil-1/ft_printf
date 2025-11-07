@@ -6,11 +6,11 @@
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 17:49:01 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/06 19:35:21 by ldepenne         ###   ########.fr       */
+/*   Updated: 2025/11/07 10:23:13 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_putstr(char *s)
 {
@@ -65,12 +65,12 @@ int	ft_putnb_unsigned_base(unsigned long n, char *base)
 	while (base[size])
 		size++;
 	if (n >= 10)
-		ft_putnb_base(n / size, base);
+		i += ft_putnb_unsigned_base(n / size, base);
 	i += ft_putchar(base[n % size]);
 	return (i);
 }
 
-int	ft_printptr(void *ptr, va_list list)
+int	ft_printptr(void *ptr)
 {
 	int	len;
 
@@ -80,6 +80,6 @@ int	ft_printptr(void *ptr, va_list list)
 		return (5);
 	}
 	len = write(1, "0x", 2);
-	len += ft_putnb_unsigned_base(va_arg(list, int), "0123456789abcdef");
+	len += ft_putnb_unsigned_base((long)ptr, "0123456789abcdef");
 	return (len);
 }

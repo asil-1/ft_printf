@@ -6,13 +6,13 @@
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:10:24 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/06 19:36:54 by ldepenne         ###   ########.fr       */
+/*   Updated: 2025/11/07 09:55:21 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "printf.h"
+#include "ft_printf.h"
 
 static int	check_character(const char c, va_list list)
 {
@@ -30,13 +30,13 @@ static int	check_character(const char c, va_list list)
 	if (c == 'u')
 		len = ft_putnb_base(va_arg(list, unsigned int), "0123456789");
 	if (c == 'p')
-		len = ft_printptr(c, list);
+		len = ft_printptr(va_arg(list, void *));
 	if (c == 'x' || c == 'X')
 	{
 		base = "0123456789abcdef";
 		if (c == 'X')
 			base = "0123456789ABCDEF";
-		len += ft_putnb_base(va_arg(list, int), base);
+		len += ft_putnb_unsigned_base(va_arg(list, int), base);
 	}
 	return (len);
 }
