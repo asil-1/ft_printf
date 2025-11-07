@@ -6,7 +6,7 @@
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:10:24 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/07 10:30:24 by ldepenne         ###   ########.fr       */
+/*   Updated: 2025/11/07 11:39:37 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	check_character(const char c, va_list list)
 		base = "0123456789abcdef";
 		if (c == 'X')
 			base = "0123456789ABCDEF";
-		len += ft_putnb_unsigned_base(va_arg(list, unsigned int), base);
+		len = ft_putnb_unsigned_base(va_arg(list, unsigned int), base);
 	}
 	return (len);
 }
@@ -58,6 +58,7 @@ int	ft_printf(const char *s, ...)
 		{
 			len += check_character(*(s + i + 1), list);
 			i += 2;
+			continue ;
 		}
 		len += write(1, &s[i], 1);
 		i++;

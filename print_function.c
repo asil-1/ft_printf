@@ -6,7 +6,7 @@
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 17:49:01 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/07 11:05:45 by ldepenne         ###   ########.fr       */
+/*   Updated: 2025/11/07 11:41:03 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ int	ft_putstr(char *s)
 
 int	ft_putchar(char c)
 {
-	write(1, &c, 1);
-	return (1);
+	int	len;
+
+	len = write(1, &c, 1);
+	return (len);
 }
 
 int	ft_putnb_base(int n, char *base)
@@ -40,11 +42,11 @@ int	ft_putnb_base(int n, char *base)
 	int	i;
 
 	i = 0;
-	// if (n == -2147483648)
-	// {
-	// 	i = write(1, "-2147483648", 12);
-	// 	return (i);
-	// }
+	if (n == -2147483648)
+	{
+		i = write(1, "-2147483648", 12);
+		return (i);
+	}
 	if (n >= 10)
 		i += ft_putnb_base(n / 10, base);
 	i += ft_putchar(base[n % 10]);
