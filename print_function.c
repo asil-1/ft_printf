@@ -6,7 +6,7 @@
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 17:49:01 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/07 10:23:13 by ldepenne         ###   ########.fr       */
+/*   Updated: 2025/11/07 11:05:45 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,36 +37,28 @@ int	ft_putchar(char c)
 
 int	ft_putnb_base(int n, char *base)
 {
-	int	size;
 	int	i;
 
 	i = 0;
-	size = 0;
-	if (n == -2147483648)
-	{
-		i = write(1, "-2147483648", 12);
-		return (i);
-	}
-	while (base[size])
-		size++;
+	// if (n == -2147483648)
+	// {
+	// 	i = write(1, "-2147483648", 12);
+	// 	return (i);
+	// }
 	if (n >= 10)
-		ft_putnb_base(n / size, base);
-	i += ft_putchar(base[n % size]);
+		i += ft_putnb_base(n / 10, base);
+	i += ft_putchar(base[n % 10]);
 	return (i);
 }
 
 int	ft_putnb_unsigned_base(unsigned long n, char *base)
 {
-	int	size;
 	int	i;
 
 	i = 0;
-	size = 0;
-	while (base[size])
-		size++;
 	if (n >= 10)
-		i += ft_putnb_unsigned_base(n / size, base);
-	i += ft_putchar(base[n % size]);
+		i += ft_putnb_unsigned_base(n / 16, base);
+	i += ft_putchar(base[n % 16]);
 	return (i);
 }
 

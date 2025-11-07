@@ -1,7 +1,5 @@
-#
-
 CC= cc
-CFLAGS= -Wall -Wextra -Werror
+CFLAGS= -Wall -Wextra -Werror -g
 HEADER=printf.h
 
 NAME=libftprintf.a
