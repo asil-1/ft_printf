@@ -6,7 +6,7 @@
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 17:49:01 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/07 11:41:03 by ldepenne         ###   ########.fr       */
+/*   Updated: 2025/11/09 11:31:11 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,13 @@ int	ft_putnb_base(int n, char *base)
 	i = 0;
 	if (n == -2147483648)
 	{
-		i = write(1, "-2147483648", 12);
+		i = write(1, "-2147483648", 11);
 		return (i);
+	}
+	if (n < 0)
+	{
+		i += write(1, "-", 1);
+		n *= -1;
 	}
 	if (n >= 10)
 		i += ft_putnb_base(n / 10, base);
@@ -58,6 +63,11 @@ int	ft_putnb_unsigned_base(unsigned long n, char *base)
 	int	i;
 
 	i = 0;
+	if (n == 4294967295)
+	{
+		i = write(1, "ffffffff", 8);
+		return (i);
+	}
 	if (n >= 10)
 		i += ft_putnb_unsigned_base(n / 16, base);
 	i += ft_putchar(base[n % 16]);
