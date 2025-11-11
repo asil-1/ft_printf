@@ -6,12 +6,11 @@
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 17:49:01 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/11 00:56:45 by ldepenne         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:33:29 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_putstr(char *s)
 {
@@ -38,16 +37,11 @@ int	ft_putchar(char c)
 	return (len);
 }
 
-int	ft_putnb_base(int n, char *base)
+int	ft_putnb_base(long long n, char *base)
 {
 	int	i;
 
 	i = 0;
-	if (n == -2147483648)
-	{
-		i = write(1, "-2147483648", 11);
-		return (i);
-	}
 	if (n < 0)
 	{
 		i += write(1, "-", 1);
@@ -64,12 +58,7 @@ int	ft_putnb_base_hexa(unsigned long n, char *base)
 	int	i;
 
 	i = 0;
-	if (n == 4294967295)
-	{
-		i = write(1, "ffffffff", 8);
-		return (i);
-	}
-	if (n >= 10)
+	if (n >= 16)
 		i += ft_putnb_base_hexa(n / 16, base);
 	i += ft_putchar(base[n % 16]);
 	return (i);
@@ -85,6 +74,6 @@ int	ft_printptr(void *ptr)
 		return (5);
 	}
 	len = write(1, "0x", 2);
-	len += ft_putnb_base_hexa((unsigned long)ptr, "0123456789abcdef");
+	len += ft_putnb_base_hexa((unsigned long)ptr, HEXA_LOWER_BASE);
 	return (len);
 }

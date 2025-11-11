@@ -1,6 +1,6 @@
 CC= cc
 CFLAGS= -Wall -Wextra -Werror -g
-HEADER=printf.h
+INCLUDE= .
 
 NAME=libftprintf.a
 
@@ -18,7 +18,7 @@ $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
 $(BUILD_DIR)%.o: %.c | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCLUDE)
 
 $(OBJ_DIR):
 	@mkdir -p $@

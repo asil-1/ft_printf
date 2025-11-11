@@ -6,18 +6,16 @@
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:10:24 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/11 00:46:33 by ldepenne         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:41:13 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include "ft_printf.h"
+
 
 static int	check_character(char c, va_list list)
 {
 	int		len;
-	char	*base;
 
 	if (c == '%')
 		len = write(1, "%", 1);
@@ -26,22 +24,15 @@ static int	check_character(char c, va_list list)
 	if (c == 'c')
 		len = ft_putchar(va_arg(list, int));
 	if (c == 'i' || c == 'd')
-		len = ft_putnb_base(va_arg(list, long), "0123456789");
+		len = ft_putnb_base(va_arg(list, int), HEXA_LOWER_BASE);
 	if (c == 'p')
 		len = ft_printptr(va_arg(list, void *));
 	if (c == 'u')
-	{
-		if ((long long)c < 0)
-			c = 4294967296 - (long long)c;
-		len = ft_putnb_base_hexa(va_arg(list, unsigned int), "0123456789");
-	}
-	if (c == 'x' || c == 'X')
-	{
-		base = "0123456789abcdef";
-		if (c == 'X')
-			base = "0123456789ABCDEF";
-		len = ft_putnb_base_hexa(va_arg(list, unsigned int), base);
-	}
+		len = ft_putnb_base(va_arg(list, unsigned int), HEXA_LOWER_BASE);
+	if (c == 'x')
+		len = ft_putnb_base_hexa(va_arg(list, unsigned int), HEXA_LOWER_BASE);
+	if (c == 'X')
+		len = ft_putnb_base_hexa(va_arg(list, unsigned int), HEXA_UPPER_BASE);
 	return (len);
 }
 
