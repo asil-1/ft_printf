@@ -6,11 +6,12 @@
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 17:49:01 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/09 11:31:11 by ldepenne         ###   ########.fr       */
+/*   Updated: 2025/11/11 00:56:45 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	ft_putstr(char *s)
 {
@@ -58,7 +59,7 @@ int	ft_putnb_base(int n, char *base)
 	return (i);
 }
 
-int	ft_putnb_unsigned_base(unsigned long n, char *base)
+int	ft_putnb_base_hexa(unsigned long n, char *base)
 {
 	int	i;
 
@@ -69,7 +70,7 @@ int	ft_putnb_unsigned_base(unsigned long n, char *base)
 		return (i);
 	}
 	if (n >= 10)
-		i += ft_putnb_unsigned_base(n / 16, base);
+		i += ft_putnb_base_hexa(n / 16, base);
 	i += ft_putchar(base[n % 16]);
 	return (i);
 }
@@ -84,6 +85,6 @@ int	ft_printptr(void *ptr)
 		return (5);
 	}
 	len = write(1, "0x", 2);
-	len += ft_putnb_unsigned_base((long)ptr, "0123456789abcdef");
+	len += ft_putnb_base_hexa((unsigned long)ptr, "0123456789abcdef");
 	return (len);
 }

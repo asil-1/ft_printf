@@ -6,7 +6,7 @@
 /*   By: ldepenne <ldepenne@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 17:38:24 by ldepenne          #+#    #+#             */
-/*   Updated: 2025/11/07 11:05:38 by ldepenne         ###   ########.fr       */
+/*   Updated: 2025/11/11 00:38:15 by ldepenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_printf(const char *s, ...);
 int	ft_putstr(char *s);
 int	ft_putchar(char c);
 int	ft_putnb_base(int n, char *base);
-int	ft_putnb_unsigned_base(unsigned long n, char *base);
+int	ft_putnb_base_hexa(unsigned long n, char *base);
 int	ft_printptr(void *ptr);
 
 #endif
